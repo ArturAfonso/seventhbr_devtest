@@ -10,6 +10,9 @@ dependencies:
   get: 4.6.5
   flutter: 
     sdk: flutter
+  get_storage: ^2.1.1
+  flutter_svg: ^2.0.2
+  validatorless: ^1.2.3
 
 dev_dependencies: 
   flutter_lints: 2.0.1
@@ -18,4 +21,7 @@ dev_dependencies:
 
 flutter: 
   uses-material-design: true
+
+  assets:
+    - assets\seventh_logo.svg
 
