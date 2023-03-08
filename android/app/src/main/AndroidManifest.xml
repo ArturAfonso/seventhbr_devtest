@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.arturafonso.seventh_devtest">
+   <uses-permission android:name="android.permission.INTERNET"/>
+   
    <application
         android:label="seventh_devtest"
         android:name="${applicationName}"

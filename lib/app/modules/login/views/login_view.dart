@@ -13,19 +13,23 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: SingleChildScrollView(
+        body: Form(
+      key: controller.loginformKey,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: SingleChildScrollView(
+          child: SizedBox(
+            height: Get.size.height,
             child: Column(
               children: [
                 SizedBox(
-                  height: controller.percentHeight(.30),
+                  height: Get.size.height * 0.30,
                 ),
-                SvgPicture.asset(controller.assetName,
-                    colorFilter: ColorFilter.mode(
-                        Get.isDarkMode ? Colors.white : Theme.of(context).primaryColor, BlendMode.srcIn),
-                    semanticsLabel: 'A red up arrow'),
+                SvgPicture.asset(
+                  controller.assetName,
+                  height: 50,
+                  colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                ),
                 const SizedBox(
                   height: 80,
                 ),
@@ -33,9 +37,10 @@ class LoginView extends GetView<LoginController> {
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   child: CustomTextField(
                     customTextController: controller.controllerLogin,
-                    validator: Validatorless.multiple(
-                        [Validatorless.email('Email invalido'), Validatorless.required('O campo e obrigatorio')]),
-                    height: 60 /* controller.loginformKey.currentState!.validate() ? 60 : 70 */,
+                    validator: Validatorless.multiple([
+                      Validatorless.required('O campo e obrigatorio'),
+                    ]),
+                    height: 60,
                     icon: const Icon(
                       Icons.email_outlined,
                       size: 24,
@@ -66,14 +71,16 @@ class LoginView extends GetView<LoginController> {
                 CustomButton(
                   label: "ACESSAR",
                   onPressed: () {
-                    Navigator.of(context).popAndPushNamed('/home');
+                    controller.login();
                   },
-                  widith: controller.screenWidith,
+                  widith: Get.size.width,
                   height: 60,
                 ),
               ],
             ),
           ),
-        ));
+        ),
+      ),
+    ));
   }
 }
